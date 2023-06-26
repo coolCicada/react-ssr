@@ -6,7 +6,7 @@ function Index() {
   }, []);
   return (
     <div>
-      <h1>page Index</h1>
+      <h1>Page Index</h1>
       <button onClick={handleClick}>btn</button>
     </div>
   )
