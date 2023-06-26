@@ -1,11 +1,18 @@
 import React from 'react';
-
 import { renderToString } from 'react-dom/server';
-
-import Index from '../../client/pages/index/Index';
+import { StaticRouter, Route} from 'react-router';
+import routeList from '../../client/router/router-config';
+import App from '../../client/router/index';
 
 export default (ctx: any, next: any) => {
-  const html = renderToString(<Index />);
+  console.log('ctx.request.path', ctx.request.path);
+  const path = ctx.request.path;
+  let contenxt = {};
+  const html = renderToString(
+    <StaticRouter location={path} context={contenxt}>
+      <App routeList={routeList} />
+    </StaticRouter>
+  );
 
   ctx.body = `<!DOCTYPE html>
 <html lang="en">
@@ -15,7 +22,7 @@ export default (ctx: any, next: any) => {
 </head>
 <body>
     <div id="root">
-        ${html} <span>测试内容</span>//增加了span 标签
+        ${html}
     </div>
 </body>
 </html>
