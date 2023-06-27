@@ -9,6 +9,11 @@ process.env.BABEL_ENV = 'node';//设置 babel 的运行环境
 module.exports = {
     mode: 'development',
     target: 'node',
+    resolve: {
+        alias: {
+            '@': path.resolve(__dirname, 'src/')
+        }
+    },
     entry: resolvePath('../src/server/app/index.ts'),//入口文件
     output: {
         filename: 'index.js', //设置打包后的文件名
@@ -25,5 +30,8 @@ module.exports = {
     externals: [nodeExternals()],
     resolve: {
         extensions: ['.tsx', '.ts', '.js'],
+        alias: {
+            '@': path.resolve(__dirname, '../src/')
+        }
     },
 }

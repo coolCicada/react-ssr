@@ -1,0 +1,15 @@
+import { matchPath} from 'react-router';
+
+export default (path: string, routeList: any): { targetRoute: any, targetMatch: any } => { 
+    
+  let targetRoute, targetMatch;
+
+  for (var item of routeList) {
+    targetMatch = matchPath(path, item);
+    if (targetMatch) {
+      targetRoute = item;//查找到第一个路由后停止查找
+      break;
+    }
+  }
+  return { targetRoute, targetMatch };
+}

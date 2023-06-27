@@ -9,7 +9,12 @@ function App({ routeList }: { routeList: any }) {
           <Switch>
               {
                   routeList.map((item: any) => {
-                        return <Route key={item.path} {...item}></Route>
+                        return item.initialData
+                               ? <Route key={item.path} exact={item.exact} path={item.path}  render={(props)=>{
+                                    props.staticContext = { initialData : item.initialData };
+                                    return <item.component {...props}></item.component>
+                                }}></Route>
+                               : <Route key={item.path} {...item}></Route>
                   })
               }
           </Switch>
