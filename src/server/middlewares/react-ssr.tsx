@@ -6,23 +6,32 @@ import App from '../../client/router/index';
 import matchRoute from '@/share/match-route';
 
 export default async (ctx: any, next: any) => {
-  console.log('ctx.request.path', ctx.request.path);
   const path = ctx.request.path;
 
   let { targetRoute } = matchRoute(path, routeList);
 
   const fetchDataFn = targetRoute.component.getInitialProps;
-  let fetchResult = {};
-  if(fetchDataFn){
-      fetchResult = await fetchDataFn();
-  }
-
-  let context = {
-    initialData: fetchResult
+  let fetchResult = {
+    error: null,
+    data: {
+      pageData: null,
+      tdk: null,
+    }
   };
-
+  let tdk = {
+    title: '美团',
+    keywords: '默认关键词',
+    description: '默认描述'
+  };
+  if(fetchDataFn){
+    fetchResult = await fetchDataFn();
+    targetRoute.initialData = fetchResult.data.pageData;
+    if (fetchResult.data.tdk) {
+      tdk = fetchResult.data.tdk;
+    }
+  }
   const html = renderToString(
-    <StaticRouter location={path} context={context}>
+    <StaticRouter location={path}>
       <App routeList={routeList} />
     </StaticRouter>
   );
@@ -31,7 +40,9 @@ export default async (ctx: any, next: any) => {
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>传统 ssr2</title>
+    <title>${tdk.title}</title>
+    <meta name="keywords" content="${tdk.keywords}" />
+    <meta name="description" content="${tdk.description}" />
 </head>
 <body>
     <div id="root">
@@ -44,6 +55,5 @@ export default async (ctx: any, next: any) => {
 </html>
 <script type="text/javascript"  src="index.js"></script>
 `;
-
   await next();
 };

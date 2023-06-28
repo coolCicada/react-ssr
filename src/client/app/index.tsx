@@ -8,8 +8,8 @@ import matchRoute from '@/share/match-route';
 function clientRender() {
   let initialData = JSON.parse((document.getElementById('ssrTextInitData') as any).value)
   let { targetRoute } = matchRoute(document.location.pathname, routeList)
-  console.log(targetRoute);
-  targetRoute.initialData = initialData;
+  targetRoute.initialData = initialData.data.pageData;
+  targetRoute.tdk = initialData.data.tdk;
   //渲染 index 组件 到页面
   ReactDom.hydrate(
     <BrowserRouter>

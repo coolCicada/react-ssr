@@ -1,20 +1,21 @@
 import React, { useEffect, useState } from 'react';
-import { getInitialProps } from '@/client/api/Index';
+import { getInitialPropsForList } from '@/client/api/Index';
 
 function Index(props: any) {
-  // console.log('props:', props);
+  if (props.tdk) {
+    document.title = props.tdk.title;
+  }
 
-  const initData = props.staticContext && props.staticContext.initialData || {}
-  const initList = initData.data || null;
-
-  const [list, setList] = useState(initList)
-
+  const initData = props.initialData || null
+  const [list, setList] = useState(initData)
+  
   useEffect(() => {
     if (!list) {
       const fetchData = async () => {
-        const { error, data } = await getInitialProps();
+        const { error, data } = await getInitialPropsForList();
         if (!error && data) {
-          setList(data);
+          setList(data.pageData);
+          document.title = data.tdk.title;
         }
       }
       fetchData();
@@ -40,6 +41,6 @@ function Index(props: any) {
   )
 }
 
-Index.getInitialProps = getInitialProps;
+Index.getInitialProps = getInitialPropsForList;
 
 export default Index;

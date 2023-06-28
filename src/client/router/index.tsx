@@ -11,7 +11,8 @@ function App({ routeList }: { routeList: any }) {
                   routeList.map((item: any) => {
                         return item.initialData
                                ? <Route key={item.path} exact={item.exact} path={item.path}  render={(props)=>{
-                                    props.staticContext = { initialData : item.initialData };
+                                    props.initialData = item.initialData;
+                                    props.tdk = item.tdk;
                                     return <item.component {...props}></item.component>
                                 }}></Route>
                                : <Route key={item.path} {...item}></Route>

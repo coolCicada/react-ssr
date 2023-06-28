@@ -11,4 +11,20 @@ export const listData = [{
     "desc": "通俗易懂的编程“套路“学。带你深入看似高深实则接地气的设计模式原理，在实际场景中内化设计模式的”道“与”术“。学会驾驭代码，而非被其奴役。",
     "img": "https://p1-jj.byteimg.com/tos-cn-i-t2oaga2asx/gold-user-assets/2019/9/16/16d382e623923d91~tplv-t2oaga2asx-image.image"
   }
-]
+];
+
+export const indexData = {
+  content: '主页内容',
+};
+
+export const indexTDK = {
+  title:'首页',
+  keywords:'前端技术江湖',
+  description:'indexTDK'
+};
+
+export const listTDK = {
+  title:'列表页',
+  keywords:'前端技术江湖-列表页',
+  description:'listTDK'
+};

@@ -3,6 +3,11 @@ import List from '../pages/list/Index';
 
 export default [
     {
+        path: '/',
+        component: Index,
+        exact: true //是否精确匹配
+    },
+    {
         path: '/index',
         component: Index,
         exact: true //是否精确匹配
