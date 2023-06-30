@@ -1,4 +1,5 @@
 import React from 'react';
+import { Helmet } from 'react-helmet';
 import { renderToString } from 'react-dom/server';
 import { StaticRouter } from 'react-router';
 import routeList from '../../client/router/router-config';
@@ -28,6 +29,7 @@ export default async (ctx: any, next: any) => {
     targetRoute.initialData = fetchResult.data.pageData;
     if (fetchResult.data.tdk) {
       tdk = fetchResult.data.tdk;
+      targetRoute.tdk = tdk;
     }
   }
   const html = renderToString(
@@ -35,14 +37,14 @@ export default async (ctx: any, next: any) => {
       <App routeList={routeList} />
     </StaticRouter>
   );
+  const helmet = Helmet.renderStatic();
 
   ctx.body = `<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>${tdk.title}</title>
-    <meta name="keywords" content="${tdk.keywords}" />
-    <meta name="description" content="${tdk.description}" />
+    ${helmet.title.toString()}
+    ${helmet.meta.toString()}
 </head>
 <body>
     <div id="root">

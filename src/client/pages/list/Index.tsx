@@ -1,13 +1,10 @@
 import React, { useEffect, useState } from 'react';
 import { getInitialPropsForList } from '@/client/api/Index';
+import { Helmet } from 'react-helmet';
 
 function Index(props: any) {
-  if (props.tdk) {
-    document.title = props.tdk.title;
-  }
-
-  const initData = props.initialData || null
-  const [list, setList] = useState(initData)
+  const [tdk, setTdk] = useState(props.tdk);
+  const [list, setList] = useState(props.initData)
   
   useEffect(() => {
     if (!list) {
@@ -15,7 +12,7 @@ function Index(props: any) {
         const { error, data } = await getInitialPropsForList();
         if (!error && data) {
           setList(data.pageData);
-          document.title = data.tdk.title;
+          setTdk(data.tdk);
         }
       }
       fetchData();
@@ -24,6 +21,13 @@ function Index(props: any) {
 
   return (
     <div>
+      {
+        tdk && (<Helmet>
+          <title>{tdk.title}</title>
+          <meta name="description" content={tdk.description}/>
+          <meta name="keywords" content={tdk.keywords}/>
+        </Helmet>)
+      }
       <h1>Page List</h1>
       <div className='list'>
         {

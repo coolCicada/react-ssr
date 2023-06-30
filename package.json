@@ -32,8 +32,9 @@
     "react-router": "5.0.1",
     "react-router-config": "5.0.1",
     "react-router-dom": "5.0.1",
-    "webpack": "^4.41.2",
-    "webpack-cli": "^3.3.10",
+    "react-helmet": "5.2.1",
+    "webpack": "4.41.2",
+    "webpack-cli": "3.3.10",
     "webpack-node-externals": "1.7.2"
   },
   "devDependencies": {
@@ -42,6 +43,7 @@
     "@types/node": "^20.3.1",
     "@types/react": "^18.2.12",
     "@types/react-dom": "^18.2.5",
+    "@types/react-helmet": "^6.1.6",
     "@types/react-router-dom": "^5.3.3"
   },
   "bugs": {

@@ -1,20 +1,17 @@
 import React, { useCallback, useEffect, useState } from 'react';
 import { getInitialPropsForIndex } from '@/client/api/Index';
+import { Helmet } from 'react-helmet';
 
 function Index(props: any) {
-  if (props.tdk) {
-    document.title = props.tdk.title;
-  }
-
-  const initPageData = props.initialData || null
-  const [pageData, setPageData] = useState(initPageData);
+  const [tdk, setTdk] = useState(props.tdk);
+  const [pageData, setPageData] = useState(props.initPageData);
   useEffect(() => {
     if (!pageData) {
       const fetchData = async () => {
         const { error, data } = await getInitialPropsForIndex();
         if (!error && data) {
           setPageData(data.pageData);
-          document.title = data.tdk.title;
+          setTdk(data.tdk);
         }
       }
       fetchData();
@@ -25,6 +22,13 @@ function Index(props: any) {
   }, []);
   return (
     <div>
+      {
+        tdk && (<Helmet>
+          <title>{tdk.title}</title>
+          <meta name="description" content={tdk.description}/>
+          <meta name="keywords" content={tdk.keywords}/>
+        </Helmet>)
+      }
       <h1>Page Index</h1>
       <button onClick={handleClick}>btn</button>
       <div>
