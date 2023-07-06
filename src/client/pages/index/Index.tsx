@@ -1,6 +1,7 @@
 import React, { useCallback, useEffect, useState } from 'react';
 import { getInitialPropsForIndex } from '@/client/api/Index';
 import { Helmet } from 'react-helmet';
+import './index.less';
 
 function Index(props: any) {
   const [tdk, setTdk] = useState(props.tdk);
@@ -21,7 +22,7 @@ function Index(props: any) {
     alert('watch!!')
   }, []);
   return (
-    <div>
+    <div className="page-index-box">
       {
         tdk && (<Helmet>
           <title>{tdk.title}</title>

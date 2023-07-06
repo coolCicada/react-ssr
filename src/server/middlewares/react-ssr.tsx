@@ -45,6 +45,7 @@ export default async (ctx: any, next: any) => {
     <meta charset="UTF-8">
     ${helmet.title.toString()}
     ${helmet.meta.toString()}
+    <link rel="stylesheet" type="text/css" href="/main.css" />
 </head>
 <body>
     <div id="root">

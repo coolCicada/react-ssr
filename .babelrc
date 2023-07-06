@@ -1,7 +1,28 @@
 {
-  "presets": [
-    "@babel/preset-env",
-    "@babel/preset-react",
-    "@babel/preset-typescript"
-  ]
+  "env": {
+    "node": {
+      "presets": [
+        [
+            "@babel/preset-env",
+            {
+                "targets":{
+                    "node":"current"
+                }
+            }
+        ],
+        "@babel/preset-react",
+        "@babel/preset-typescript"
+      ],
+      "plugins": [
+        "./webpack/babel/plugin/no-require-css"
+      ]
+    },
+    "development": {
+      "presets": [
+        "@babel/preset-env",
+        "@babel/preset-react",
+        "@babel/preset-typescript"
+      ]
+    }
+  }
 }
