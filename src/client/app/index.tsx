@@ -20,3 +20,7 @@ function clientRender() {
 
 clientRender();
 
+//开发环境才会开启
+if (process.env.NODE_ENV==='development' &&  module.hot) {
+  module.hot.accept();
+}

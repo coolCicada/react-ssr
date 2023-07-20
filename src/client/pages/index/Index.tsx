@@ -30,7 +30,7 @@ function Index(props: any) {
           <meta name="keywords" content={tdk.keywords}/>
         </Helmet>)
       }
-      <h1>Page Index</h1>
+      <h1>Page Index23</h1>
       <button onClick={handleClick}>btn</button>
       <div>
         {pageData && pageData.content}

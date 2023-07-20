@@ -1,5 +1,6 @@
 const path = require('path');
 const nodeExternals = require('webpack-node-externals')
+const webpack = require('webpack');
 
 //定一个通用的路径转换方法
 const resolvePath = (pathstr) => path.resolve(__dirname, pathstr);
@@ -27,6 +28,13 @@ module.exports = {
             }
         ]
     },
+    plugins:[
+        new webpack.DefinePlugin({
+        'process.env': { NODE_ENV: `"${process.env.NODE_ENV}"`},
+        '__IS_PROD__':isProd,
+        '__SERVER__': true
+        })
+    ],
     externals: [nodeExternals()],
     resolve: {
         extensions: ['.tsx', '.ts', '.js'],

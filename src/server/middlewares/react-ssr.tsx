@@ -5,8 +5,10 @@ import { StaticRouter } from 'react-router';
 import routeList from '../../client/router/router-config';
 import App from '../../client/router/index';
 import matchRoute from '@/share/match-route';
+import getAssets from '../common/assets';
 
 export default async (ctx: any, next: any) => {
+  console.log('two');
   const path = ctx.request.path;
 
   let { targetRoute } = matchRoute(path, routeList);
@@ -39,13 +41,17 @@ export default async (ctx: any, next: any) => {
   );
   const helmet = Helmet.renderStatic();
 
+  console.log('two1');
+  //静态资源
+  const assetsMap = getAssets();
+  console.log('two2');
   ctx.body = `<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     ${helmet.title.toString()}
     ${helmet.meta.toString()}
-    <link rel="stylesheet" type="text/css" href="/main.css" />
+    ${assetsMap.css.join('')}
 </head>
 <body>
     <div id="root">

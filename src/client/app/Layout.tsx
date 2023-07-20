@@ -1,8 +1,9 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
+import { hot } from 'react-hot-loader/root';
 import './layout.less';
 
-export default function Index(props: any) {
+function Index(props: any) {
     return (
         <div className='layout-box'>
             <h1>??</h1>
@@ -13,3 +14,5 @@ export default function Index(props: any) {
         </div>
     )
 }
+
+export default hot(Index);

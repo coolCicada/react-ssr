@@ -9,7 +9,8 @@
     "dev:client": "webpack --config ./webpack/webpack.dev.config.js --watch",
     "dev:server": "node ./webpack/scripts/svr-code-watch.js",
     "build:client": "webpack --config ./webpack/webpack.dev.config.js",
-    "build:server": "webpack --config ./webpack/webpack.server.config.js"
+    "build:server": "webpack --config ./webpack/webpack.server.config.js",
+    "wds:watch": "BABEL_ENV=development node ./webpack/scripts/wds-start.js"
   },
   "repository": {
     "type": "git",
@@ -23,6 +24,7 @@
     "@babel/preset-env": "7.7.4",
     "@babel/preset-react": "7.7.4",
     "@babel/preset-typescript": "7.7.4",
+    "@hot-loader/react-dom": "16.11.0",
     "core-js": "3.1.4",
     "@babel/register": "7.7.7",
     "autoprefixer": "9.7.3",
@@ -53,7 +55,9 @@
     "@types/react-helmet": "^6.1.6",
     "@types/react-router-dom": "^5.3.3",
     "less": "3.13.1",
-    "less-loader": "7.3.0"
+    "less-loader": "7.3.0",
+    "react-hot-loader": "4.12.18",
+    "webpack-dev-server": "3.10.1"
   },
   "bugs": {
     "url": "https://github.com/coolCicada/react-ssr/issues"
